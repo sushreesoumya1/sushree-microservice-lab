@@ -5,8 +5,37 @@ A small, evolving microservice lab: Spring Boot → Docker → Kubernetes.
 - v1: Basic REST endpoint ✅
 - v2: Dockerized service ✅
 - v3: Kubernetes deployment ✅
-- v4: ConfigMap + Secret
-- v5: Health probes
-- v6: Postgres
-- v7: Redis
-- v8: HPA + resource limits
+- v4: Actuator + proper /actuator/health ✅
+- v5: Resource requests & limits
+- v6: ConfigMap (externalized config)
+- v7: Secret management
+- v8: Environment profiles (dev vs prod)
+- v9: Logging best practices
+- v10: PostgreSQL deployment (StatefulSet)
+- v11: Persistent Volume + PVC
+- v12: Connect service to DB
+- v13: DB migration tool (Flyway/Liquibase)
+- v14: Redis cache layer
+- v15: Cache-aside pattern implementation
+- v16: Horizontal Pod Autoscaler (HPA)
+- v17: CPU-based autoscaling
+- v18: Rolling updates vs Recreate
+- v19: PodDisruptionBudget
+- v20: Readiness vs Liveness deep dive
+- v21: Graceful shutdown
+- v22: Add second microservice
+- v23: Inter-service communication (REST)
+- v24: gRPC communication
+- v25: API Gateway pattern
+- v26: Circuit breaker (Resilience4j)
+- v27: Retry & timeout strategy
+- v28: Prometheus metrics
+- v29: Grafana dashboards
+- v30: Distributed tracing (Zipkin/Jaeger)
+- v31: Structured logging
+- v32: Correlation IDs
+- v33: Push images to Docker Hub
+- v34: Deploy to AWS EKS / GKE / AKS
+- v35: Use managed Postgres (RDS)
+- v36: Ingress + Load Balancer
+- v37: TLS + HTTPS
