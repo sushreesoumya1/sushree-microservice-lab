@@ -20,4 +20,10 @@ public class HelloController {
         return n + "COHAD microservice lab - v3 🚀 | Pod: " + hostname;
     }
 
+    @GetMapping("/oom")
+    public String oom() {
+        byte[] memoryHog = new byte[700 * 1024 * 1024];
+        return "Allocated: " + memoryHog.length;
+    }
+
 }
