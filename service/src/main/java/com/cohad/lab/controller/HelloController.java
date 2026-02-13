@@ -13,12 +13,19 @@ import java.net.UnknownHostException;
 public class HelloController {
     @Value("${app.message}")
     private String message;
+    @Value("${API_KEY:}")
+    private String apiKey;
 
     @GetMapping("/hello")
     public String getMessage() throws UnknownHostException {
         String hostname = InetAddress.getLocalHost().getHostName();
         return message + " | Pod: " + hostname;
     }
-
+    @GetMapping("/secret-check")
+    public String secretCheck() {
+        return apiKey.isBlank()
+                ? "API_KEY missing ❌"
+                : "API_KEY loaded ✅ (length=" + apiKey.length() + ")";
+    }
 
 }
