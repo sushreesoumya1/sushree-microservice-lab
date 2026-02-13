@@ -6,7 +6,7 @@ A small, evolving microservice lab: Spring Boot → Docker → Kubernetes.
 - v2: Dockerized service ✅
 - v3: Kubernetes deployment ✅
 - v4: Actuator + proper /actuator/health ✅
-- v5: Resource requests & limits
+- v5: Resource requests & limits ✅
 - v6: ConfigMap (externalized config)
 - v7: Secret management
 - v8: Environment profiles (dev vs prod)
