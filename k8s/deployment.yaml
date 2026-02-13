@@ -15,17 +15,30 @@ spec:
       labels:
         app: lab-service
     spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: lab-config
       containers:
         - name: lab-service
-          image: cohad-lab-service:v5-oom
+          image: cohad-lab-service:v6
           imagePullPolicy: IfNotPresent
+          env:
+            - name: APP_MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: lab-config
+                  key: APP_MESSAGE
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
           resources:
             requests:
               cpu: "250m"
-              memory: "150Mi"
+              memory: "256Mi"
             limits:
               cpu: "500m"
-              memory: "150Mi"
+              memory: "512Mi"
           ports:
             - containerPort: 8080
           livenessProbe:
