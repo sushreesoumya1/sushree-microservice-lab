@@ -9,7 +9,7 @@ A small, evolving microservice lab: Spring Boot → Docker → Kubernetes.
 - v5: Resource requests & limits ✅
 - v6: ConfigMap (externalized config) ✅
 - v7: Secret management ✅
-- v8: Environment profiles (dev vs prod)
+- v8: Environment profiles (dev vs prod) ✅
 - v9: Logging best practices
 - v10: PostgreSQL deployment (StatefulSet)
 - v11: Persistent Volume + PVC

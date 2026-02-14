@@ -21,16 +21,9 @@ spec:
             name: lab-config
       containers:
         - name: lab-service
-          image: cohad-lab-service:v7
+          image: cohad-lab-service:v8
           imagePullPolicy: IfNotPresent
           env:
-            # ConfigMap (V6)
-            - name: APP_MESSAGE
-              valueFrom:
-                configMapKeyRef:
-                  name: lab-config
-                  key: APP_MESSAGE
-
             # Secret (V7)
             - name: API_KEY
               valueFrom:
@@ -43,6 +36,10 @@ spec:
                 secretKeyRef:
                   name: lab-secrets
                   key: DB_PASSWORD
+            - name: SPRING_PROFILES_ACTIVE
+              value: "dev"
+            - name: SPRING_CONFIG_ADDITIONAL_LOCATION
+              value: "file:/config/"
           volumeMounts:
             - name: config-volume
               mountPath: /config

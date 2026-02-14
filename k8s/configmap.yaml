@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: lab-config
 data:
-  APP_MESSAGE: "COHAD microservice lab - v6 🚀 (FROM_CONFIGMAP_ENV)"
+  SPRING_PROFILES_ACTIVE: dev
   application.properties: |
     management.endpoints.web.exposure.include=health,info
     management.endpoint.health.probes.enabled=true
