@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: lab-config
 data:
-  SPRING_PROFILES_ACTIVE: dev
+  SPRING_PROFILES_ACTIVE: prod
   application.properties: |
     management.endpoints.web.exposure.include=health,info
     management.endpoint.health.probes.enabled=true

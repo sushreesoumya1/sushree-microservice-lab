@@ -37,7 +37,10 @@ spec:
                   name: lab-secrets
                   key: DB_PASSWORD
             - name: SPRING_PROFILES_ACTIVE
-              value: "dev"
+              valueFrom:
+                  configMapKeyRef:
+                    name: lab-config
+                    key: SPRING_PROFILES_ACTIVE
             - name: SPRING_CONFIG_ADDITIONAL_LOCATION
               value: "file:/config/"
           volumeMounts:
