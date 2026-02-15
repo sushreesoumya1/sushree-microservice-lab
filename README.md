@@ -10,8 +10,8 @@ A small, evolving microservice lab: Spring Boot → Docker → Kubernetes.
 - v6: ConfigMap (externalized config) ✅
 - v7: Secret management ✅
 - v8: Environment profiles (dev vs prod) ✅
-- v9: Logging best practices
-- v10: PostgreSQL deployment (StatefulSet)
+- v9: Logging best practices ✅
+- v10: PostgreSQL deployment (StatefulSet) ✅
 - v11: Persistent Volume + PVC
 - v12: Connect service to DB
 - v13: DB migration tool (Flyway/Liquibase)
