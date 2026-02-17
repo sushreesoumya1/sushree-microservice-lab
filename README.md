@@ -14,7 +14,7 @@ A small, evolving microservice lab: Spring Boot → Docker → Kubernetes.
 - v10: PostgreSQL deployment (StatefulSet) ✅
 - v11: Persistent Volume + PVC ✅
 - v12: Connect service to DB ✅
-- v13: DB migration tool (Flyway/Liquibase)
+- v13: DB migration tool (Flyway) ✅
 - v14: Redis cache layer
 - v15: Cache-aside pattern implementation
 - v16: Horizontal Pod Autoscaler (HPA)
