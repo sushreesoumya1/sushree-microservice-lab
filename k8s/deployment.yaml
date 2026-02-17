@@ -22,7 +22,7 @@ spec:
             name: lab-config
       containers:
         - name: lab-service
-          image: cohad-lab-service:v9
+          image: cohad-lab-service:v12.1
           imagePullPolicy: IfNotPresent
           env:
             # Secret (V7)
@@ -44,6 +44,23 @@ spec:
                     key: SPRING_PROFILES_ACTIVE
             - name: SPRING_CONFIG_ADDITIONAL_LOCATION
               value: "file:/config/"
+            - name: POSTGRES_DB
+              valueFrom:
+                  secretKeyRef:
+                    name: lab-secrets
+                    key: POSTGRES_DB
+
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: lab-secrets
+                  key: POSTGRES_USER
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lab-secrets
+                  key: POSTGRES_PASSWORD
           volumeMounts:
             - name: config-volume
               mountPath: /config
