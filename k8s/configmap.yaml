@@ -6,5 +6,20 @@ metadata:
 data:
   SPRING_PROFILES_ACTIVE: prod
   application.properties: |
+    # ---- Actuator / probes (V4-V9 hygiene) ----
     management.endpoints.web.exposure.include=health,info
     management.endpoint.health.probes.enabled=true
+
+    # ---- PostgreSQL (single source of truth = POSTGRES_* env vars from Secret) ----
+    spring.datasource.url=jdbc:postgresql://postgres:5432/labdb
+    spring.datasource.username=${POSTGRES_USER}
+    spring.datasource.password=${POSTGRES_PASSWORD}
+
+    # Flyway uses the same creds (explicit to avoid surprises)
+    spring.flyway.enabled=true
+    spring.flyway.user=${POSTGRES_USER}
+    spring.flyway.password=${POSTGRES_PASSWORD}
+
+    # ---- Redis (V14 infra wiring; used in V15) ----
+    spring.data.redis.host=redis
+    spring.data.redis.port=6379

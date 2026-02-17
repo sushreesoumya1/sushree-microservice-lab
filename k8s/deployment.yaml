@@ -5,7 +5,6 @@ metadata:
   namespace: mls-lab
   labels:
     app: lab-service
-
 spec:
   replicas: 2
   selector:
@@ -22,8 +21,9 @@ spec:
             name: lab-config
       containers:
         - name: lab-service
-          image: cohad-lab-service:v13
+          image: cohad-lab-service:v14
           imagePullPolicy: IfNotPresent
+
           env:
             # Secret (V7)
             - name: API_KEY
@@ -32,24 +32,7 @@ spec:
                   name: lab-secrets
                   key: API_KEY
 
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: lab-secrets
-                  key: DB_PASSWORD
-            - name: SPRING_PROFILES_ACTIVE
-              valueFrom:
-                  configMapKeyRef:
-                    name: lab-config
-                    key: SPRING_PROFILES_ACTIVE
-            - name: SPRING_CONFIG_ADDITIONAL_LOCATION
-              value: "file:/config/"
-            - name: POSTGRES_DB
-              valueFrom:
-                  secretKeyRef:
-                    name: lab-secrets
-                    key: POSTGRES_DB
-
+            # ✅ DB creds come from Secret and are referenced by application.properties
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
@@ -61,9 +44,21 @@ spec:
                 secretKeyRef:
                   name: lab-secrets
                   key: POSTGRES_PASSWORD
+
+            # Profile & external config
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: lab-config
+                  key: SPRING_PROFILES_ACTIVE
+
+            - name: SPRING_CONFIG_ADDITIONAL_LOCATION
+              value: "file:/config/"
+
           volumeMounts:
             - name: config-volume
               mountPath: /config
+
           resources:
             requests:
               cpu: "250m"
@@ -71,14 +66,16 @@ spec:
             limits:
               cpu: "500m"
               memory: "512Mi"
+
           ports:
             - containerPort: 8080
+
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
               port: 8080
-            initialDelaySeconds: 15
-            periodSeconds: 10
+            initialDelaySeconds: 30
+            periodSeconds: 5
 
           readinessProbe:
             httpGet:
