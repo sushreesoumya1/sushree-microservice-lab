@@ -15,8 +15,8 @@ A small, evolving microservice lab: Spring Boot → Docker → Kubernetes.
 - v11: Persistent Volume + PVC ✅
 - v12: Connect service to DB ✅
 - v13: DB migration tool (Flyway) ✅
-- v14: Redis cache layer
-- v15: Cache-aside pattern implementation
+- v14: Redis cache layer ✅
+- v15: Cache-aside pattern implementation ✅
 - v16: Horizontal Pod Autoscaler (HPA)
 - v17: CPU-based autoscaling
 - v18: Rolling updates vs Recreate
