@@ -21,7 +21,7 @@ spec:
             name: lab-config
       containers:
         - name: lab-service
-          image: cohad-lab-service:v15
+          image: cohad-lab-service:v17
           imagePullPolicy: IfNotPresent
 
           env:
