@@ -19,7 +19,7 @@ A small, evolving microservice lab: Spring Boot → Docker → Kubernetes.
 - v15: Cache-aside pattern implementation ✅
 - v16: Horizontal Pod Autoscaler (HPA) ✅
 - v17: HPA Internals & Scaling Behavior Tuning ✅
-- v18: Rolling updates vs Recreate
+- v18: Rolling updates vs Recreate ✅
 - v19: PodDisruptionBudget
 - v20: Readiness vs Liveness deep dive
 - v21: Graceful shutdown

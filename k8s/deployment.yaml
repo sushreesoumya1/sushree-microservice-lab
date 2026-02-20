@@ -6,6 +6,8 @@ metadata:
   labels:
     app: lab-service
 spec:
+  strategy:
+    type: Recreate
   replicas: 2
   selector:
     matchLabels:
@@ -21,7 +23,7 @@ spec:
             name: lab-config
       containers:
         - name: lab-service
-          image: cohad-lab-service:v17
+          image: cohad-lab-service:v18
           imagePullPolicy: IfNotPresent
 
           env:
