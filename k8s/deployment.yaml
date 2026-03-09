@@ -6,6 +6,8 @@ metadata:
   labels:
     app: lab-service
 spec:
+  strategy:
+    type: Recreate
   replicas: 2
   selector:
     matchLabels:
