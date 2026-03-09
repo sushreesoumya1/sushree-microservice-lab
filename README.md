@@ -18,9 +18,9 @@ A small, evolving microservice lab: Spring Boot → Docker → Kubernetes.
 - v14: Redis cache layer ✅
 - v15: Cache-aside pattern implementation ✅
 - v16: Horizontal Pod Autoscaler (HPA) ✅
-- v17: CPU-based autoscaling deep dive
-- v18: Rolling updates vs Recreate
-- v19: PodDisruptionBudget
+- v17: CPU-based autoscaling deep dive ✅
+- v18: Rolling updates vs Recreate ✅
+- v19: PodDisruptionBudget ✅
 - v20: Readiness vs Liveness deep dive
 - v21: Graceful shutdown
 - v22: Add second microservice

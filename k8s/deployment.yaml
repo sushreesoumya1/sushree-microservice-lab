@@ -15,13 +15,14 @@ spec:
       labels:
         app: lab-service
     spec:
+      terminationGracePeriodSeconds: 30
       volumes:
         - name: config-volume
           configMap:
             name: lab-config
       containers:
         - name: lab-service
-          image: cohad-lab-service:v15
+          image: cohad-lab-service:v19
           imagePullPolicy: IfNotPresent
 
           env:
