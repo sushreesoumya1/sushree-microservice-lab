@@ -1,7 +1,7 @@
 package com.cohad.activityservice.document;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.index.Indexed;import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 import java.util.Map;
@@ -12,6 +12,7 @@ public record ActivityEvent(
         @Id
         String id,
 
+        @Indexed
         String userId,
 
         String eventType,

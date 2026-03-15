@@ -3,7 +3,7 @@ package com.cohad.activityservice.controller;
 import com.cohad.activityservice.document.ActivityEvent;
 import com.cohad.activityservice.repository.ActivityRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;import org.springframework.data.domain.Pageable;import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.List;
@@ -45,5 +45,10 @@ public class ActivityController {
     @GetMapping
     public List<ActivityEvent> getAllEvents(){
         return repo.findAll();
+    }
+
+    @GetMapping
+    public Page<ActivityEvent> getAll(Pageable pageable) {
+        return repo.findAll(pageable);
     }
 }
