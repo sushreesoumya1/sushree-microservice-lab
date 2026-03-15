@@ -41,4 +41,9 @@ public class ActivityController {
     public List<ActivityEvent> byType(@PathVariable String eventType) {
         return repo.findByEventType(eventType);
     }
+
+    @GetMapping
+    public List<ActivityEvent> getAllEvents(){
+        return repo.findAll();
+    }
 }
