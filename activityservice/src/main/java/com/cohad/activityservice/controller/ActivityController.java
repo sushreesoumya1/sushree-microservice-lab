@@ -47,8 +47,8 @@ public class ActivityController {
         return repo.findAll();
     }
 
-    @GetMapping
+    /*@GetMapping
     public Page<ActivityEvent> getAll(Pageable pageable) {
         return repo.findAll(pageable);
-    }
+    }*/
 }
