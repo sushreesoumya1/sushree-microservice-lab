@@ -2,6 +2,7 @@ package com.cohad.activityservice.controller;
 
 import com.cohad.activityservice.document.ActivityEvent;
 import com.cohad.activityservice.repository.ActivityRepository;
+import com.cohad.activityservice.responseDTO.ActivityResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;import org.springframework.data.domain.Pageable;import org.springframework.web.bind.annotation.*;
 
@@ -33,22 +34,43 @@ public class ActivityController {
     }
 
     @GetMapping("/user/{userId}")
-    public List<ActivityEvent> byUser(@PathVariable String userId) {
-        return repo.findByUserId(userId);
+    public Page<ActivityResponseDTO> byUser(@PathVariable String userId, Pageable pageable) {
+        return repo.findByUserId(userId, pageable)
+                .map(event -> new ActivityResponseDTO(
+                        event.id(),
+                        event.userId(),
+                        event.eventType(),
+                        event.timestamp(),
+                        event.metadata()
+                ));
     }
 
     @GetMapping("/type/{eventType}")
-    public List<ActivityEvent> byType(@PathVariable String eventType) {
-        return repo.findByEventType(eventType);
-    }
-
-    @GetMapping
-    public List<ActivityEvent> getAllEvents(){
-        return repo.findAll();
+    public Page<ActivityResponseDTO> byType(@PathVariable String eventType, Pageable pageable) {
+        return repo.findByEventType(eventType, pageable)
+                .map(event -> new ActivityResponseDTO(
+                        event.id(),
+                        event.userId(),
+                        event.eventType(),
+                        event.timestamp(),
+                        event.metadata()
+                ));
     }
 
     /*@GetMapping
-    public Page<ActivityEvent> getAll(Pageable pageable) {
-        return repo.findAll(pageable);
+    public List<ActivityEvent> getAllEvents(){
+        return repo.findAll();
     }*/
+
+    @GetMapping
+    public Page<ActivityResponseDTO> getAll(Pageable pageable) {
+        return repo.findAll(pageable)
+                .map(event -> new ActivityResponseDTO(
+                        event.id(),
+                        event.userId(),
+                        event.eventType(),
+                        event.timestamp(),
+                        event.metadata()
+                ));
+    }
 }

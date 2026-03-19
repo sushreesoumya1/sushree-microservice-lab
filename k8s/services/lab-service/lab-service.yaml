@@ -39,7 +39,7 @@ spec:
             name: lab-config
       containers:
         - name: lab-service
-          image: cohad-lab-service:v21
+          image: cohad-lab-service
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
