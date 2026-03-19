@@ -13,6 +13,10 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: prod
+
+            - name: SPRING_MAIN_WEB_APPLICATION_TYPE
+              value: none   # 🔥 IMPORTANT
+
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
@@ -31,4 +35,4 @@ spec:
                   name: lab-secrets
                   key: POSTGRES_DB
       restartPolicy: Never
-  backoffLimit: 2
+  backoffLimit: 1

@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace/namespace.yaml
+  - config/configmap.yaml
+  - config/secret.yaml
+
+  - storage/PersistentVolumeClaim.yaml
+
+  - databases/mongodb/mongo.yaml
+  - databases/postgres/postgres.yaml
+  - databases/redis/redis.yaml
+
+  - services/lab-service/lab-service.yaml
+  - services/lab-service/hpa-lab-service.yaml
+  - services/lab-service/pdb.yaml
+  - services/activity-service/activity-service.yaml
+
+  - jobs/flyway-job.yaml
+  - infra/metrics-server.yaml
