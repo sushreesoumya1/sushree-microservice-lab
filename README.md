@@ -24,7 +24,7 @@ A small, evolving microservice lab: Spring Boot → Docker → Kubernetes.
 - v20: Readiness vs Liveness deep dive ✅
 - v21: Graceful shutdown ✅
 - v22: Add second microservice ✅
-- v23: Inter-service communication (REST)
+- v23: Inter-service communication (REST) ✅
 - v24: gRPC communication
 - v25: API Gateway pattern
 - v26: Circuit breaker (Resilience4j)
