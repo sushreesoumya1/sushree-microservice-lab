@@ -8,9 +8,15 @@ spec:
   selector:
     app: activity-service
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: 8082
       nodePort: 30081
+
+    - name: grpc
+      port: 9090
+      targetPort: 9090
+      nodePort: 30090
 
 ---
 apiVersion: apps/v1

@@ -4,7 +4,7 @@ images:
   - name: cohad-lab-service
     newTag: v24.3
   - name: activity-service
-    newTag: v24.2
+    newTag: v24.3
 
 resources:
   - namespace/namespace.yaml
