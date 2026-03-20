@@ -7,12 +7,13 @@ import com.example.activity.grpc.ActivityRequest;
 import com.example.activity.grpc.ActivityResponse;
 import com.example.activity.grpc.ActivityServiceGrpc;
 import io.grpc.stub.StreamObserver;
-import net.devh.boot.grpc.server.service.GrpcService;
+import net.devh.boot.grpc.server.service.GrpcService;import org.springframework.data.domain.PageRequest;import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
 @GrpcService
-public class ActivityGrpcService extends ActivityServiceGrpc.ActivityServiceImplBase{
+public class ActivityGrpcService extends ActivityServiceGrpc.ActivityServiceImplBase {
+
     private final ActivityRepository activityRepository;
 
     public ActivityGrpcService(ActivityRepository activityRepository) {
@@ -23,22 +24,35 @@ public class ActivityGrpcService extends ActivityServiceGrpc.ActivityServiceImpl
     public void getRecentActivities(ActivityRequest request,
                                     StreamObserver<ActivityResponse> responseObserver) {
 
-        List<ActivityEvent> events = activityRepository.findAll();
+        try {
+            PageRequest pageRequest = PageRequest.of(
+                    request.getPage(),
+                    request.getSize(),
+                    Sort.by(Sort.Direction.DESC, "timestamp")
+            );
 
-        List<Activity> grpcActivities = events.stream()
-                .map(e -> Activity.newBuilder()
-                        .setId(e.id())
-                        .setUserId(e.userId())
-                        .setEventType(e.eventType())
-                        .setTimestamp(e.timestamp().toString())
-                        .build())
-                .toList();
+            List<ActivityEvent> events = activityRepository
+                    .findAll(pageRequest)
+                    .getContent();
 
-        ActivityResponse response = ActivityResponse.newBuilder()
-                .addAllActivities(grpcActivities)
-                .build();
+            List<Activity> grpcActivities = events.stream()
+                    .map(e -> Activity.newBuilder()
+                            .setId(e.id())
+                            .setUserId(e.userId())
+                            .setEventType(e.eventType())
+                            .setTimestamp(e.timestamp().toString())
+                            .build())
+                    .toList();
 
-        responseObserver.onNext(response);
-        responseObserver.onCompleted();
+            ActivityResponse response = ActivityResponse.newBuilder()
+                    .addAllActivities(grpcActivities)
+                    .build();
+
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+
+        } catch (Exception e) {
+            responseObserver.onError(e);
+        }
     }
 }
